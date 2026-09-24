@@ -1,0 +1,1469 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Voice Agent Portal | We Build Trades — Executive Client Hub</title>
+  <meta name="description" content="State-of-the-art client-facing Voice Agent Portal for UK trade businesses. Live call intelligence, audio analysis, semantic knowledge retrieval, and CRM synchronization.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="portal-body">
+  <div class="app-layout">
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="brand-logo">
+          <div class="brand-symbol">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/>
+              <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+              <line x1="12" y1="19" x2="12" y2="22"/>
+            </svg>
+          </div>
+          <div class="brand-text">
+            <span class="brand-title">We Build Trades</span>
+            <span class="brand-subtitle">Voice Agent Hub</span>
+          </div>
+        </div>
+        <div class="hub-pill">
+          <span class="pulse-indicator"></span>
+          Employee Hub &bull; Live
+        </div>
+      </div>
+
+      <!-- Live Agent Status Card -->
+      <div class="sidebar-status-card">
+        <div class="status-top">
+          <span class="status-dot-pulse"></span>
+          <span class="status-text">Voice Agent Online</span>
+        </div>
+        <div class="status-meta">
+          <span class="agent-name-tag">Olivia &bull; Receptionist</span>
+          <span class="latency-pill font-mono">742ms latency</span>
+        </div>
+        <button class="btn btn-test-agent mt-2" id="btnSidebarTestAgent">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/></svg>
+          <span>Test Live Voice Call</span>
+        </button>
+      </div>
+
+      <nav class="sidebar-nav" id="sidebarNav">
+        <button class="nav-item active" data-section="overview" id="nav-overview">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+          <span>Overview</span>
+        </button>
+
+        <button class="nav-item" data-section="users" id="nav-users">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <span>Users</span>
+        </button>
+
+        <button class="nav-item" data-section="calls" id="nav-calls">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <span>Calls</span>
+          <span class="badge" id="sidebarCallCount">159</span>
+        </button>
+
+        <button class="nav-item" data-section="contacts" id="nav-contacts">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2z"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="12" y2="14"/></svg>
+          <span>Contacts</span>
+        </button>
+
+        <button class="nav-item" data-section="favourites" id="nav-favourites">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <span>Favourites</span>
+          <span class="badge highlight" id="sidebarFavCount">3</span>
+        </button>
+
+        <button class="nav-item" data-section="feedback" id="nav-feedback">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          <span>Feedback</span>
+          <span class="badge badge-subtle">QA</span>
+        </button>
+
+        <button class="nav-item" data-section="audit" id="nav-audit">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          <span>Audit Logs</span>
+        </button>
+
+        <button class="nav-item" data-section="knowledge" id="nav-knowledge">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+          <span>Knowledge Base</span>
+        </button>
+
+        <button class="nav-item" data-section="billing" id="nav-billing">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+          <span>Billing</span>
+        </button>
+
+        <button class="nav-item" data-section="settings" id="nav-settings">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+          <span>Settings</span>
+        </button>
+      </nav>
+
+      <!-- Sidebar User Footer -->
+      <div class="sidebar-footer">
+        <div class="user-card">
+          <div class="user-avatar">DH</div>
+          <div class="user-details">
+            <span class="user-name">Daniyal Haider</span>
+            <span class="user-email">daniyal@voiceagent.com</span>
+          </div>
+        </div>
+        <div class="sidebar-footer-actions">
+          <!-- Theme Toggle -->
+          <button class="theme-toggle-btn" id="themeToggleBtn" title="Toggle Light / Dark Mode">
+            <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+            <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          </button>
+          <!-- Sign out -->
+          <button class="sign-out-btn" id="signOutBtn" title="Sign Out">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+            <span>Sign Out</span>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-wrapper">
+      <!-- Top Action Bar -->
+      <header class="topbar">
+        <div class="topbar-left">
+          <h1 class="page-title" id="pageTitle">Dashboard</h1>
+          <span class="client-badge" id="clientBadge">Client Portal</span>
+
+          <!-- GHL CRM Sync Pill -->
+          <div class="ghl-sync-pill" id="ghlSyncPill" title="Connected to GoHighLevel API">
+            <span class="ghl-dot"></span>
+            <span class="ghl-text">GHL Linked &bull; Essex Heating Experts</span>
+          </div>
+        </div>
+
+        <div class="topbar-controls">
+          <!-- Voice Agent Selector -->
+          <div class="select-wrapper">
+            <svg class="control-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/></svg>
+            <select id="agentFilterSelect" class="form-select">
+              <option value="boiler_sure">Boiler Sure - Inbound</option>
+              <option value="essex_heating">Essex Heating Experts - Reception</option>
+              <option value="valley_gas">Valley Gas - Outbound Setter</option>
+              <option value="all">All Voice Agents</option>
+            </select>
+          </div>
+
+          <!-- Date Range Selector -->
+          <div class="select-wrapper date-range-wrapper">
+            <svg class="control-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            <select id="dateRangeSelect" class="form-select">
+              <option value="7d" selected>10 Sept 2026 - 16 Sept 2026</option>
+              <option value="today">Today</option>
+              <option value="4w">Last 4 Weeks</option>
+              <option value="3m">Last 3 Months</option>
+              <option value="mtd">Month to Date</option>
+              <option value="ytd">Year to Date</option>
+              <option value="all">All Time</option>
+              <option value="custom">Custom Range...</option>
+            </select>
+          </div>
+
+          <!-- Test Agent Button (Highlight) -->
+          <button class="btn btn-primary btn-glow" id="btnHeaderTestAgent">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            <span>Live Voice Playground</span>
+          </button>
+
+          <!-- Quick Refresh Button -->
+          <button class="btn btn-secondary btn-icon-only" id="globalRefreshBtn" title="Sync live updates from Voice & GHL">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+          </button>
+        </div>
+      </header>
+
+      <!-- VIEW CONTAINER -->
+      <div class="content-body" id="contentBody">
+
+        <!-- ================= SECTION 01: OVERVIEW DASHBOARD ================= -->
+        <section class="portal-section active" id="sec-overview">
+          <!-- Executive ROI Banner (New client-value feature!) -->
+          <div class="roi-banner">
+            <div class="roi-left">
+              <div class="roi-icon-glow">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+              </div>
+              <div class="roi-text">
+                <span class="roi-tag">Commercial Impact &bull; Last 7 Days</span>
+                <h3 class="roi-headline">£4,850 in Pipeline Value Captured</h3>
+                <p class="roi-desc">Your voice agents answered 100% of calls within 2 rings, booking <strong>14 service jobs</strong> and capturing <strong>9 qualified quotes</strong> that would have otherwise gone to voicemail.</p>
+              </div>
+            </div>
+            <div class="roi-metrics-split">
+              <div class="roi-stat-box">
+                <span class="roi-stat-val font-mono">31.8x</span>
+                <span class="roi-stat-lbl">Return on Voice Spend</span>
+              </div>
+              <div class="roi-stat-box">
+                <span class="roi-stat-val font-mono">42.5h</span>
+                <span class="roi-stat-lbl">Admin Hours Saved</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Headline Metrics Cards -->
+          <div class="metrics-grid mt-6">
+            <div class="metric-card">
+              <div class="metric-header">
+                <span class="metric-title">Total Calls</span>
+                <span class="metric-icon call-bg">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                </span>
+              </div>
+              <div class="metric-value font-mono" id="valTotalCalls">159</div>
+              <div class="metric-sub trend-down">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 18 13.5 8.5 8.5 13.5 1 6"/><polyline points="17 18 23 18 23 12"/></svg>
+                <span>-12% from last period</span>
+              </div>
+            </div>
+
+            <div class="metric-card">
+              <div class="metric-header">
+                <span class="metric-title">Total Contacts</span>
+                <span class="metric-icon contact-bg">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                </span>
+              </div>
+              <div class="metric-value font-mono" id="valTotalContacts">103</div>
+              <div class="metric-sub text-muted">
+                <span>Unique trade customers in CRM</span>
+              </div>
+            </div>
+
+            <div class="metric-card">
+              <div class="metric-header">
+                <span class="metric-title">Total Duration</span>
+                <span class="metric-icon duration-bg">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                </span>
+              </div>
+              <div class="metric-value font-mono" id="valTotalDuration">3h 20m 32s</div>
+              <div class="metric-sub text-muted">
+                <span>Airtime talk duration</span>
+              </div>
+            </div>
+
+            <div class="metric-card">
+              <div class="metric-header">
+                <span class="metric-title">Avg Call Duration</span>
+                <span class="metric-icon avg-bg">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                </span>
+              </div>
+              <div class="metric-value font-mono" id="valAvgDuration">1m 15s</div>
+              <div class="metric-sub trend-up">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+                <span>Optimal trade qualification speed</span>
+              </div>
+            </div>
+
+            <div class="metric-card highlight-card">
+              <div class="metric-header">
+                <span class="metric-title">Success Rate</span>
+                <span class="metric-icon success-bg">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                </span>
+              </div>
+              <div class="metric-value font-mono" id="valSuccessRate">73%</div>
+              <div class="metric-sub text-muted">
+                <span>Outcome resolved without dropped line</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Heatmap Panel: Peak Call Times -->
+          <div class="panel-card mt-6">
+            <div class="panel-header">
+              <div>
+                <h2 class="panel-title">Peak Call Times</h2>
+                <p class="panel-subtitle">Identify busy periods - darker cells indicate higher call volumes (Live Hover Demo)</p>
+              </div>
+              <div class="heatmap-legend">
+                <span class="legend-label">Less</span>
+                <span class="legend-swatch lvl-0"></span>
+                <span class="legend-swatch lvl-1"></span>
+                <span class="legend-swatch lvl-2"></span>
+                <span class="legend-swatch lvl-3"></span>
+                <span class="legend-swatch lvl-4"></span>
+                <span class="legend-label">More</span>
+              </div>
+            </div>
+            <div class="heatmap-container" id="heatmapContainer"></div>
+            <div class="heatmap-tooltip" id="heatmapTooltip"></div>
+          </div>
+
+          <!-- Trade Topics & Keyword Cloud (New Feature!) -->
+          <div class="panel-card mt-6">
+            <div class="panel-header">
+              <div>
+                <h3 class="panel-title">Caller Intent & Trade Topic Trends</h3>
+                <p class="panel-subtitle">Most frequently discussed job types & caller inquiries (Click any tag to filter calls)</p>
+              </div>
+            </div>
+            <div class="topic-cloud" id="topicCloudContainer">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+
+          <!-- Charts Row 1: Calls Over Time & Average Duration -->
+          <div class="charts-row mt-6">
+            <div class="panel-card chart-card">
+              <div class="panel-header">
+                <div>
+                  <h3 class="panel-title">Calls Over Time</h3>
+                  <p class="panel-subtitle">Daily call volume breakdown</p>
+                </div>
+                <div class="chart-toggles">
+                  <label class="checkbox-label"><input type="checkbox" id="chkInbound" checked> Inbound</label>
+                  <label class="checkbox-label"><input type="checkbox" id="chkOutbound"> Outbound</label>
+                </div>
+              </div>
+              <div class="chart-wrapper">
+                <svg class="trend-chart" viewBox="0 0 600 200" preserveAspectRatio="none" id="callsChartSvg">
+                  <defs>
+                    <linearGradient id="callsGradient" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stop-color="#0ea5e9" stop-opacity="0.4"/>
+                      <stop offset="100%" stop-color="#0ea5e9" stop-opacity="0.0"/>
+                    </linearGradient>
+                  </defs>
+                  <line x1="40" y1="170" x2="580" y2="170" stroke="var(--border-color)" stroke-width="1"/>
+                  <line x1="40" y1="120" x2="580" y2="120" stroke="var(--border-color)" stroke-dasharray="4 4" stroke-width="1"/>
+                  <line x1="40" y1="70" x2="580" y2="70" stroke="var(--border-color)" stroke-dasharray="4 4" stroke-width="1"/>
+                  <path id="callsAreaPath" d="" fill="url(#callsGradient)"/>
+                  <path id="callsLinePath" d="" fill="none" stroke="#0ea5e9" stroke-width="3" stroke-linecap="round"/>
+                  <g id="callsDotsGroup"></g>
+                  <g class="chart-labels" id="callsLabelsGroup"></g>
+                </svg>
+              </div>
+            </div>
+
+            <div class="panel-card chart-card">
+              <div class="panel-header">
+                <div>
+                  <h3 class="panel-title">Average Call Duration</h3>
+                  <p class="panel-subtitle">Minutes per completed conversation</p>
+                </div>
+              </div>
+              <div class="chart-wrapper">
+                <svg class="trend-chart" viewBox="0 0 600 200" preserveAspectRatio="none" id="durationChartSvg">
+                  <defs>
+                    <linearGradient id="durationGradient" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stop-color="#14b8a6" stop-opacity="0.4"/>
+                      <stop offset="100%" stop-color="#14b8a6" stop-opacity="0.0"/>
+                    </linearGradient>
+                  </defs>
+                  <line x1="40" y1="170" x2="580" y2="170" stroke="var(--border-color)" stroke-width="1"/>
+                  <line x1="40" y1="120" x2="580" y2="120" stroke="var(--border-color)" stroke-dasharray="4 4" stroke-width="1"/>
+                  <line x1="40" y1="70" x2="580" y2="70" stroke="var(--border-color)" stroke-dasharray="4 4" stroke-width="1"/>
+                  <path id="durationAreaPath" d="" fill="url(#durationGradient)"/>
+                  <path id="durationLinePath" d="" fill="none" stroke="#14b8a6" stroke-width="3" stroke-linecap="round"/>
+                  <g id="durationDotsGroup"></g>
+                  <g class="chart-labels" id="durationLabelsGroup"></g>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <!-- Charts Row 2: Disconnection Reasons & User Sentiment -->
+          <div class="charts-row mt-6">
+            <div class="panel-card">
+              <div class="panel-header">
+                <div>
+                  <h3 class="panel-title">Disconnection Reasons</h3>
+                  <p class="panel-subtitle">Who hung up the call first</p>
+                </div>
+              </div>
+              <div class="donut-container">
+                <div class="donut-chart-box">
+                  <svg class="donut-svg" viewBox="0 0 160 160">
+                    <circle cx="80" cy="80" r="60" fill="none" stroke="#0284c7" stroke-width="24" stroke-dasharray="233 377" stroke-dashoffset="0"/>
+                    <circle cx="80" cy="80" r="60" fill="none" stroke="#22c55e" stroke-width="24" stroke-dasharray="144 377" stroke-dashoffset="-233"/>
+                  </svg>
+                  <div class="donut-center-text">
+                    <span class="donut-main font-mono">159</span>
+                    <span class="donut-sub">Calls</span>
+                  </div>
+                </div>
+                <div class="donut-legend">
+                  <div class="legend-item">
+                    <span class="legend-pill" style="background:#0284c7;"></span>
+                    <span class="legend-name">Agent Hung Up</span>
+                    <span class="legend-pct font-mono">62%</span>
+                  </div>
+                  <div class="legend-item">
+                    <span class="legend-pill" style="background:#22c55e;"></span>
+                    <span class="legend-name">User Hung Up</span>
+                    <span class="legend-pct font-mono">38%</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="panel-card">
+              <div class="panel-header">
+                <div>
+                  <h3 class="panel-title">User Sentiment Analysis</h3>
+                  <p class="panel-subtitle">Real-time caller emotional state detection</p>
+                </div>
+              </div>
+              <div class="donut-container">
+                <div class="donut-chart-box">
+                  <svg class="donut-svg" viewBox="0 0 160 160">
+                    <circle cx="80" cy="80" r="60" fill="none" stroke="#eab308" stroke-width="24" stroke-dasharray="282 377" stroke-dashoffset="0"/>
+                    <circle cx="80" cy="80" r="60" fill="none" stroke="#10b981" stroke-width="24" stroke-dasharray="49 377" stroke-dashoffset="-282"/>
+                    <circle cx="80" cy="80" r="60" fill="none" stroke="#ef4444" stroke-width="24" stroke-dasharray="38 377" stroke-dashoffset="-331"/>
+                    <circle cx="80" cy="80" r="60" fill="none" stroke="#94a3b8" stroke-width="24" stroke-dasharray="8 377" stroke-dashoffset="-369"/>
+                  </svg>
+                  <div class="donut-center-text">
+                    <span class="donut-main font-mono">75%</span>
+                    <span class="donut-sub">Neutral</span>
+                  </div>
+                </div>
+                <div class="donut-legend">
+                  <div class="legend-item">
+                    <span class="legend-pill" style="background:#eab308;"></span>
+                    <span class="legend-name">Neutral</span>
+                    <span class="legend-pct font-mono">75%</span>
+                  </div>
+                  <div class="legend-item">
+                    <span class="legend-pill" style="background:#10b981;"></span>
+                    <span class="legend-name">Positive</span>
+                    <span class="legend-pct font-mono">13%</span>
+                  </div>
+                  <div class="legend-item">
+                    <span class="legend-pill" style="background:#ef4444;"></span>
+                    <span class="legend-name">Negative</span>
+                    <span class="legend-pct font-mono">10%</span>
+                  </div>
+                  <div class="legend-item">
+                    <span class="legend-pill" style="background:#94a3b8;"></span>
+                    <span class="legend-name">Unknown</span>
+                    <span class="legend-pct font-mono">2%</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Charts Row 3: Remaining Metrics -->
+          <div class="metrics-grid mt-6">
+            <div class="panel-card">
+              <h4 class="panel-title-sm">Voicemail Rate</h4>
+              <p class="panel-subtitle-sm">Calls terminating in carrier voicemail</p>
+              <div class="metric-display">
+                <span class="metric-lg font-mono">3.2%</span>
+                <span class="badge-pill badge-success">Optimal (&lt; 5%)</span>
+              </div>
+            </div>
+            <div class="panel-card">
+              <h4 class="panel-title-sm">Inbound vs Outbound Calls</h4>
+              <p class="panel-subtitle-sm">Direction ratio for selected period</p>
+              <div class="metric-display">
+                <span class="metric-lg font-mono">100% Inbound</span>
+                <span class="badge-pill badge-info">159 Calls</span>
+              </div>
+            </div>
+            <div class="panel-card">
+              <h4 class="panel-title-sm">Average Latency</h4>
+              <p class="panel-subtitle-sm">End-to-end voice speech-to-speech delay</p>
+              <div class="metric-display">
+                <span class="metric-lg font-mono" id="valLatency">742 ms</span>
+                <span class="badge-pill badge-success">Ultra Low Latency</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- ================= SECTION 02: USERS MANAGEMENT ================= -->
+        <section class="portal-section" id="sec-users">
+          <div class="section-header-row">
+            <div>
+              <h2 class="section-heading">User Management</h2>
+              <p class="section-desc">Manage portal access, assign voice agents, roles, and review pending invitations.</p>
+            </div>
+            <button class="btn btn-primary" id="btnOpenInviteModal">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              <span>Invite User</span>
+            </button>
+          </div>
+
+          <!-- My Invitations Table -->
+          <div class="panel-card mt-6">
+            <div class="panel-header">
+              <div class="header-with-badge">
+                <h3 class="panel-title">My Invitations</h3>
+                <span class="count-badge" id="inviteCountBadge">1</span>
+              </div>
+              <div class="table-search-box">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                <input type="text" placeholder="Search by name or email..." class="search-input" id="searchInvitesInput">
+              </div>
+            </div>
+            <div class="table-responsive">
+              <table class="data-table" id="invitationsTable">
+                <thead>
+                  <tr>
+                    <th>Email</th>
+                    <th>Name</th>
+                    <th>Voice Agent</th>
+                    <th>Role</th>
+                    <th>Company</th>
+                    <th>Sent</th>
+                    <th>Expires</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="invitationsTableBody"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- All Users Table -->
+          <div class="panel-card mt-6">
+            <div class="panel-header">
+              <div class="header-with-badge">
+                <h3 class="panel-title">All Users</h3>
+                <span class="count-badge" id="userCountBadge">4</span>
+              </div>
+              <div class="table-search-box">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                <input type="text" placeholder="Search users..." class="search-input" id="searchUsersInput">
+              </div>
+            </div>
+            <div class="table-responsive">
+              <table class="data-table" id="usersTable">
+                <thead>
+                  <tr>
+                    <th width="40"><input type="checkbox" id="checkAllUsers"></th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Voice Agent</th>
+                    <th>Role</th>
+                    <th>Company</th>
+                    <th>Access Level</th>
+                    <th>Cost/Min</th>
+                    <th>Joined</th>
+                  </tr>
+                </thead>
+                <tbody id="usersTableBody"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- ================= SECTION 03: CALLS LOG & REVIEW ================= -->
+        <section class="portal-section" id="sec-calls">
+          <div class="section-header-row">
+            <div>
+              <h2 class="section-heading">Calls</h2>
+              <p class="section-desc">Search, filter, replay voice conversations, and inspect granular AI call analysis.</p>
+            </div>
+            <div class="header-actions-group">
+              <button class="btn btn-secondary" id="btnExportCallsCsv">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                <span>Export CSV</span>
+              </button>
+              <button class="btn btn-secondary" id="btnSyncCalls">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" id="syncSpinIcon"><path d="M23 4v6h-6"/><path d="M1 20v-6h6"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+                <span>Sync Calls</span>
+              </button>
+              <button class="btn btn-primary" id="btnSavePreset">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+                <span>Save Preset</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Filter Toolbar -->
+          <div class="filter-toolbar mt-4">
+            <div class="filter-item">
+              <input type="text" placeholder="Search phone or caller..." class="filter-input" id="filterPhoneInput">
+            </div>
+            <div class="filter-item">
+              <select class="filter-select" id="filterAgent">
+                <option value="all">All Agents</option>
+                <option value="Essex Heating Inbound">Essex Heating Inbound</option>
+                <option value="Boiler Sure Inbound">Boiler Sure Inbound</option>
+                <option value="Valley Gas Setter">Valley Gas Setter</option>
+              </select>
+            </div>
+            <div class="filter-item">
+              <select class="filter-select" id="filterDirection">
+                <option value="all">All Directions</option>
+                <option value="Inbound">Inbound</option>
+                <option value="Outbound">Outbound</option>
+              </select>
+            </div>
+            <div class="filter-item">
+              <select class="filter-select" id="filterStatus">
+                <option value="all">All Statuses</option>
+                <option value="Answered">Answered</option>
+                <option value="Missed">Missed</option>
+                <option value="Voicemail">Voicemail</option>
+              </select>
+            </div>
+            <div class="filter-item">
+              <select class="filter-select" id="filterSentiment">
+                <option value="all">All Sentiments</option>
+                <option value="Positive">Positive</option>
+                <option value="Neutral">Neutral</option>
+                <option value="Negative">Negative</option>
+              </select>
+            </div>
+            <div class="filter-item">
+              <select class="filter-select" id="filterOutcome">
+                <option value="all">All Outcomes</option>
+                <option value="Booking Confirmed">Booking Confirmed</option>
+                <option value="Enquiry Captured">Enquiry Captured</option>
+                <option value="Quote Requested">Quote Requested</option>
+                <option value="Failed / Dropped">Failed / Dropped</option>
+              </select>
+            </div>
+            <button class="btn btn-ghost" id="btnClearFilters">Clear</button>
+          </div>
+
+          <!-- Calls List Table -->
+          <div class="panel-card mt-4">
+            <div class="table-responsive">
+              <table class="data-table" id="callsTable">
+                <thead>
+                  <tr>
+                    <th width="35"><input type="checkbox" id="checkAllCalls"></th>
+                    <th>Date & Time</th>
+                    <th>Duration</th>
+                    <th>Cost</th>
+                    <th>From</th>
+                    <th>To</th>
+                    <th>Contact Name</th>
+                    <th>Agent</th>
+                    <th>Direction</th>
+                    <th>Status</th>
+                    <th>End Reason</th>
+                    <th>Session Outcome</th>
+                    <th width="40"></th>
+                  </tr>
+                </thead>
+                <tbody id="callsTableBody"></tbody>
+              </table>
+            </div>
+
+            <!-- Table Pagination -->
+            <div class="table-pagination">
+              <span class="pagination-info" id="callsPaginationInfo">Showing 1 to 5 of 159 calls</span>
+              <div class="pagination-buttons">
+                <button class="btn btn-sm btn-secondary" id="btnPrevCalls" disabled>Previous</button>
+                <button class="btn btn-sm btn-secondary" id="btnNextCalls">Next</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Floating Bulk Action Bar -->
+          <div class="bulk-action-bar" id="bulkActionBar">
+            <span class="bulk-count" id="bulkCountText">0 calls selected</span>
+            <div class="bulk-buttons">
+              <button class="btn btn-secondary btn-sm" id="btnBulkExport">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Export Selected
+              </button>
+              <button class="btn btn-primary btn-sm" id="btnBulkReview">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><polyline points="20 6 9 17 4 12"/></svg>
+                Mark as Reviewed
+              </button>
+              <button class="btn btn-ghost btn-sm" id="btnBulkClear">Deselect All</button>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- ================= SECTION 04: CONTACTS ================= -->
+        <section class="portal-section" id="sec-contacts">
+          <div class="section-header-row">
+            <div>
+              <h2 class="section-heading">Contacts</h2>
+              <p class="section-desc">Customer-level visibility, conversation frequency, address details, and CRM notes.</p>
+            </div>
+            <button class="btn btn-secondary" id="btnExportContactsCsv">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              <span>Export CSV</span>
+            </button>
+          </div>
+
+          <div class="panel-card mt-6">
+            <div class="panel-header">
+              <div class="table-search-box wide">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                <input type="text" placeholder="Search contacts by name, phone, or postcode..." class="search-input" id="searchContactsInput">
+              </div>
+            </div>
+            <div class="table-responsive">
+              <table class="data-table" id="contactsTable">
+                <thead>
+                  <tr>
+                    <th width="40"></th>
+                    <th>Name</th>
+                    <th>Phone Number</th>
+                    <th>Email</th>
+                    <th>Postcode / Area</th>
+                    <th>Total Calls</th>
+                    <th>Last Call Date</th>
+                    <th>Latest Notes</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="contactsTableBody"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- ================= SECTION 05: FAVOURITES ================= -->
+        <section class="portal-section" id="sec-favourites">
+          <div class="section-header-row">
+            <div>
+              <h2 class="section-heading">Favourites</h2>
+              <p class="section-desc">Quickly return to starred calls, VIP customer records, and training references.</p>
+            </div>
+          </div>
+
+          <div class="tabs-nav mt-4" id="favTabs">
+            <button class="tab-btn active" data-tab="fav-calls">Starred Calls (2)</button>
+            <button class="tab-btn" data-tab="fav-contacts">Starred Contacts (2)</button>
+          </div>
+
+          <div class="tab-content active" id="fav-calls-content">
+            <div class="panel-card mt-4">
+              <div class="table-responsive">
+                <table class="data-table" id="favCallsTable">
+                  <thead>
+                    <tr>
+                      <th>Date & Time</th>
+                      <th>Caller / Contact</th>
+                      <th>Agent</th>
+                      <th>Duration</th>
+                      <th>Call Outcome</th>
+                      <th>Notes / Reason</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody id="favCallsTableBody"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <div class="tab-content" id="fav-contacts-content">
+            <div class="panel-card mt-4">
+              <div class="table-responsive">
+                <table class="data-table" id="favContactsTable">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Phone</th>
+                      <th>Postcode</th>
+                      <th>Total Calls</th>
+                      <th>Last Call Date</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody id="favContactsTableBody"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- ================= SECTION 06: FEEDBACK & QA ================= -->
+        <section class="portal-section" id="sec-feedback">
+          <div class="section-header-row">
+            <div>
+              <h2 class="section-heading">Voice Agent QA & Feedback</h2>
+              <p class="section-desc">Dedicated review area for prompt engineering, QA observations, and model refinement.</p>
+            </div>
+          </div>
+
+          <div class="panel-card mt-6">
+            <div class="panel-header">
+              <h3 class="panel-title">Call Improvement Ledger</h3>
+              <span class="count-badge">Active Quality Loop</span>
+            </div>
+            <div class="table-responsive">
+              <table class="data-table" id="feedbackTable">
+                <thead>
+                  <tr>
+                    <th>Date Logged</th>
+                    <th>Call ID</th>
+                    <th>Reviewer</th>
+                    <th>Review Status</th>
+                    <th>Observation / Feedback</th>
+                    <th>Action Item</th>
+                  </tr>
+                </thead>
+                <tbody id="feedbackTableBody"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- ================= SECTION 07: AUDIT LOGS ================= -->
+        <section class="portal-section" id="sec-audit">
+          <div class="section-header-row">
+            <div>
+              <h2 class="section-heading">Audit Logs</h2>
+              <p class="section-desc">Maintain a complete activity trail of user actions, invitations, and system events.</p>
+            </div>
+            <button class="btn btn-secondary" id="btnExportAuditCsv">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              <span>Export All</span>
+            </button>
+          </div>
+
+          <div class="filter-toolbar mt-4">
+            <div class="filter-item">
+              <input type="text" placeholder="Search audit logs..." class="filter-input" id="searchAuditInput">
+            </div>
+            <div class="filter-item">
+              <select class="filter-select" id="filterAuditAction">
+                <option value="all">All Actions</option>
+                <option value="Call Review Saved">Call Review Saved</option>
+                <option value="User Invited">User Invited</option>
+                <option value="Knowledge Base Created">Knowledge Base Created</option>
+                <option value="Filter Preset Saved">Filter Preset Saved</option>
+                <option value="Credits Added">Credits Added</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="panel-card mt-4">
+            <div class="table-responsive">
+              <table class="data-table" id="auditLogsTable">
+                <thead>
+                  <tr>
+                    <th>Date & Time</th>
+                    <th>User</th>
+                    <th>Action</th>
+                    <th>Entity</th>
+                    <th>Entity Name</th>
+                    <th>Details</th>
+                  </tr>
+                </thead>
+                <tbody id="auditLogsTableBody"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- ================= SECTION 08: KNOWLEDGE BASE ================= -->
+        <section class="portal-section" id="sec-knowledge">
+          <div class="section-header-row">
+            <div>
+              <h2 class="section-heading">Knowledge Base</h2>
+              <p class="section-desc">Organize approved business information, pricing, service areas, and company documentation.</p>
+            </div>
+            <button class="btn btn-primary" id="btnOpenCreateKbModal">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              <span>Create Knowledge Base</span>
+            </button>
+          </div>
+
+          <!-- Interactive Semantic Retrieval Tester (New Feature!) -->
+          <div class="panel-card mt-4 kb-tester-panel">
+            <div class="panel-header">
+              <div>
+                <h3 class="panel-title">Semantic Retrieval Playground</h3>
+                <p class="panel-subtitle">Test how your Voice Agent searches documents to answer customer questions in real time</p>
+              </div>
+            </div>
+            <div class="kb-test-input-row">
+              <input type="text" id="kbQueryInput" class="form-control" placeholder="Ask a test trade query (e.g. 'Do you service Worcester Bosch boilers in Southend?' or 'What is the emergency callout rate?')">
+              <button class="btn btn-primary" id="btnTestKbQuery">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                <span>Test Retrieval</span>
+              </button>
+            </div>
+            <div class="kb-test-result mt-3" id="kbTestResultBox" style="display:none;"></div>
+          </div>
+
+          <div class="info-alert mt-4">
+            <div class="alert-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+            </div>
+            <div class="alert-content">
+              <strong>Handover principle:</strong> Knowledge Base content must be based on the client's approved business information and verified documentation. Voice AI uses semantic vector indexing to answer caller queries accurately.
+            </div>
+          </div>
+
+          <!-- Knowledge Bases Grid -->
+          <div class="kb-grid mt-6" id="kbGridContainer"></div>
+        </section>
+
+
+        <!-- ================= SECTION 09: BILLING ================= -->
+        <section class="portal-section" id="sec-billing">
+          <div class="section-header-row">
+            <div>
+              <h2 class="section-heading">Billing & Credits</h2>
+              <p class="section-desc">Manage voice minute credits, auto-refill triggers, payment methods, and invoices.</p>
+            </div>
+            <button class="btn btn-primary" id="btnOpenCreditsModal">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              <span>Add Credits</span>
+            </button>
+          </div>
+
+          <!-- Billing Overview Cards -->
+          <div class="metrics-grid mt-6">
+            <div class="panel-card">
+              <div class="panel-header">
+                <span class="panel-title-sm">Available Credits</span>
+                <span class="badge-pill badge-success">Active</span>
+              </div>
+              <div class="metric-value font-mono">£142.50</div>
+              <p class="panel-subtitle-sm mt-2">Estimated ~285 voice call minutes remaining</p>
+              <div class="progress-bar-container mt-3">
+                <div class="progress-bar-fill" style="width: 72%;"></div>
+              </div>
+            </div>
+
+            <div class="panel-card">
+              <div class="panel-header">
+                <span class="panel-title-sm">Auto-Refill Settings</span>
+                <label class="switch">
+                  <input type="checkbox" id="chkAutoRefill" checked>
+                  <span class="slider round"></span>
+                </label>
+              </div>
+              <p class="text-sm mt-1">Automatically top up <strong>£100.00</strong> when balance falls below <strong>£25.00</strong>.</p>
+              <button class="btn btn-sm btn-secondary mt-3" id="btnConfigureAutoRefill">Configure Threshold</button>
+            </div>
+
+            <div class="panel-card">
+              <div class="panel-header">
+                <span class="panel-title-sm">Payment Method</span>
+                <span class="badge-pill badge-info">Default</span>
+              </div>
+              <div class="card-chip-display mt-2">
+                <svg width="32" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+                <span class="font-mono">Mastercard ending in <strong>4242</strong></span>
+              </div>
+              <p class="text-xs text-muted mt-2">Expires 09/2028 &bull; We Build Trades Billing</p>
+            </div>
+          </div>
+
+          <!-- Invoices Table -->
+          <div class="panel-card mt-6">
+            <div class="panel-header">
+              <h3 class="panel-title">Invoice History</h3>
+            </div>
+            <div class="table-responsive">
+              <table class="data-table" id="invoicesTable">
+                <thead>
+                  <tr>
+                    <th>Invoice ID</th>
+                    <th>Date</th>
+                    <th>Description</th>
+                    <th>Amount</th>
+                    <th>Tax (VAT 20%)</th>
+                    <th>Status</th>
+                    <th>Receipt</th>
+                  </tr>
+                </thead>
+                <tbody id="invoicesTableBody"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- ================= SECTION 10: SETTINGS ================= -->
+        <section class="portal-section" id="sec-settings">
+          <div class="section-header-row">
+            <div>
+              <h2 class="section-heading">Account Settings</h2>
+              <p class="section-desc">Manage security credentials, timezones, notifications, and client portal preferences.</p>
+            </div>
+          </div>
+
+          <div class="tabs-nav mt-4" id="settingsTabs">
+            <button class="tab-btn active" data-tab="tab-password">Password & Security</button>
+            <button class="tab-btn" data-tab="tab-preferences">Preferences</button>
+          </div>
+
+          <!-- Password Tab -->
+          <div class="tab-content active" id="tab-password">
+            <div class="panel-card max-w-xl mt-4">
+              <div class="panel-header">
+                <h3 class="panel-title">Change Password</h3>
+                <p class="panel-subtitle">Update your password to keep your account secure</p>
+              </div>
+              <form id="changePasswordForm" class="settings-form">
+                <div class="form-group">
+                  <label for="currentPassword">Current Password</label>
+                  <input type="password" id="currentPassword" class="form-control" placeholder="Enter your current password" required>
+                </div>
+                <div class="form-group">
+                  <label for="newPassword">New Password</label>
+                  <input type="password" id="newPassword" class="form-control" placeholder="Enter your new password (minimum 8 characters)" minlength="8" required>
+                </div>
+                <div class="form-group">
+                  <label for="confirmPassword">Confirm New Password</label>
+                  <input type="password" id="confirmPassword" class="form-control" placeholder="Confirm your new password" minlength="8" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Update Password</button>
+              </form>
+            </div>
+          </div>
+
+          <!-- Preferences Tab -->
+          <div class="tab-content" id="tab-preferences">
+            <div class="panel-card max-w-xl mt-4">
+              <div class="panel-header">
+                <h3 class="panel-title">Regional & Alert Preferences</h3>
+              </div>
+              <form id="preferencesForm" class="settings-form">
+                <div class="form-group">
+                  <label for="prefTimezone">Client Operating Timezone</label>
+                  <select id="prefTimezone" class="form-control">
+                    <option value="Europe/London" selected>Europe/London (GMT / BST)</option>
+                    <option value="America/New_York">America/New_York (EST / EDT)</option>
+                    <option value="America/Chicago">America/Chicago (CST / CDT)</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="prefTaxRate">Tax Rate (%)</label>
+                  <input type="number" id="prefTaxRate" class="form-control" value="20" min="0" max="100">
+                  <small class="text-muted">Enter 0 to disable automated tax calculations.</small>
+                </div>
+                <div class="form-group checkbox-group">
+                  <label class="checkbox-label">
+                    <input type="checkbox" id="prefEmailSummary" checked>
+                    <span>Send daily email summary of missed & urgent calls</span>
+                  </label>
+                </div>
+                <button type="submit" class="btn btn-primary">Save Preferences</button>
+              </form>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+
+  <!-- ================= CALL REVIEW DRAWER ================= -->
+  <div class="drawer-overlay" id="drawerOverlay"></div>
+  <aside class="call-drawer" id="callDrawer">
+    <div class="drawer-header">
+      <div class="drawer-title-box">
+        <div class="drawer-badge" id="drawerCallBadge">Inbound Call</div>
+        <h2 class="drawer-title" id="drawerCallTitle">Call Details</h2>
+        <span class="drawer-timestamp font-mono" id="drawerCallTime">Sep 16, 2026, 08:37 AM</span>
+      </div>
+      <button class="drawer-close-btn" id="btnCloseDrawer" title="Close">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+
+    <div class="drawer-body">
+      <!-- Waveform Audio Player -->
+      <div class="audio-player-card">
+        <div class="player-top">
+          <button class="play-btn" id="drawerPlayBtn" title="Play / Pause Call Recording">
+            <svg viewBox="0 0 24 24" fill="currentColor" id="playIcon"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          </button>
+          <div class="track-container">
+            <canvas id="waveformCanvas" width="300" height="34" class="waveform-canvas"></canvas>
+            <input type="range" class="audio-scrubber" id="audioScrubber" value="0" min="0" max="100">
+          </div>
+          <div class="time-readout font-mono" id="audioTimeReadout">0:00 / 0:20</div>
+          <button class="speed-btn" id="audioSpeedBtn">1.0x</button>
+        </div>
+      </div>
+
+      <!-- Quick Metadata Grid -->
+      <div class="meta-pills-row mt-4">
+        <div class="meta-pill">
+          <span class="meta-k">Agent:</span>
+          <span class="meta-v" id="drawerMetaAgent">Essex Heating Inbound</span>
+        </div>
+        <div class="meta-pill">
+          <span class="meta-k">Caller:</span>
+          <span class="meta-v font-mono" id="drawerMetaPhone">+447453140190</span>
+        </div>
+        <div class="meta-pill">
+          <span class="meta-k">Duration:</span>
+          <span class="meta-v font-mono" id="drawerMetaDuration">20s</span>
+        </div>
+        <div class="meta-pill">
+          <span class="meta-k">Cost:</span>
+          <span class="meta-v font-mono" id="drawerMetaCost">£0.1722</span>
+        </div>
+      </div>
+
+      <!-- Dual Analysis Columns: Preset Analysis & Custom Analysis -->
+      <div class="analysis-split mt-4">
+        <!-- Preset Analysis -->
+        <div class="analysis-box">
+          <h4 class="analysis-heading">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            Preset Analysis
+          </h4>
+          <div class="analysis-field">
+            <span class="analysis-label">Call Status:</span>
+            <span class="analysis-val font-semibold" id="anaCallStatus">User Hung Up</span>
+          </div>
+          <div class="analysis-field">
+            <span class="analysis-label">Call Success:</span>
+            <span class="analysis-badge badge-danger" id="anaCallSuccess">Failed</span>
+          </div>
+          <div class="analysis-field">
+            <span class="analysis-label">User Sentiment:</span>
+            <span class="analysis-badge badge-warning" id="anaUserSentiment">Neutral</span>
+          </div>
+          <div class="analysis-field">
+            <span class="analysis-label">Disconnection:</span>
+            <span class="analysis-val" id="anaDisconnectReason">User Hung Up</span>
+          </div>
+          <div class="analysis-field">
+            <span class="analysis-label">Latency:</span>
+            <span class="analysis-val font-mono" id="anaLatency">797.00ms</span>
+          </div>
+        </div>
+
+        <!-- Custom Analysis -->
+        <div class="analysis-box">
+          <h4 class="analysis-heading">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            Custom Trade Analysis
+          </h4>
+          <div class="custom-fields-list" id="customAnalysisFields"></div>
+        </div>
+      </div>
+
+      <!-- AI Call Summary -->
+      <div class="summary-box mt-4">
+        <h4 class="summary-heading">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          Concise AI Summary
+        </h4>
+        <p class="summary-text" id="drawerCallSummary">Loading summary...</p>
+      </div>
+
+      <!-- Diarized Interactive Transcript -->
+      <div class="transcript-box mt-4">
+        <div class="transcript-header">
+          <h4 class="transcript-heading">Interactive Transcript</h4>
+          <span class="transcript-hint">Click any turn to seek audio</span>
+        </div>
+        <div class="transcript-flow" id="drawerTranscriptFlow"></div>
+      </div>
+
+      <!-- QA & Continuous Improvement -->
+      <div class="feedback-qa-box mt-4">
+        <h4 class="qa-heading">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+          Continuous Improvement & QA
+        </h4>
+        <div class="qa-row mt-2">
+          <label for="qaStatusSelect" class="qa-label">Review Status:</label>
+          <select id="qaStatusSelect" class="form-select sm">
+            <option value="Not Reviewed">Not Reviewed</option>
+            <option value="Reviewed - Good">Reviewed - Good</option>
+            <option value="Needs Improvement">Needs Improvement</option>
+            <option value="Escalated">Escalated</option>
+          </select>
+        </div>
+        <div class="qa-textarea-wrap mt-2">
+          <textarea id="qaCommentInput" class="form-control" rows="3" placeholder="Add your feedback or notes regarding agent phrasing, tool response, or trade logic..."></textarea>
+        </div>
+        <div class="qa-actions mt-2">
+          <button class="btn btn-primary btn-sm" id="btnSaveCallQa">Save Feedback</button>
+          <button class="btn btn-secondary btn-sm" id="btnSyncGhlCall">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Sync to GHL CRM
+          </button>
+          <button class="btn btn-ghost btn-sm" id="btnToggleStarCall">
+            <span id="starCallIcon">★</span> Star
+          </button>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+
+  <!-- ================= MODAL: LIVE VOICE PLAYGROUND (Showstopping feature) ================= -->
+  <div class="modal-backdrop" id="voicePlaygroundModal">
+    <div class="modal-box playground-modal-box">
+      <div class="modal-header">
+        <div class="header-with-badge">
+          <h3 class="modal-title">Live Voice Agent Playground</h3>
+          <span class="badge-pill badge-success">WebRTC Telephony Live</span>
+        </div>
+        <button class="modal-close-btn" id="btnClosePlaygroundModal">&times;</button>
+      </div>
+      <div class="modal-body playground-body">
+        <div class="playground-agent-header">
+          <div class="agent-avatar-orb" id="agentAvatarOrb">
+            <div class="orb-ring ring-1"></div>
+            <div class="orb-ring ring-2"></div>
+            <div class="orb-core">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="22"/></svg>
+            </div>
+          </div>
+          <h4 class="agent-live-title" id="playgroundAgentName">Olivia &bull; Essex Heating Receptionist</h4>
+          <p class="agent-live-status" id="playgroundStatusText">Agent ready &bull; Click "Start Test Call" to simulate live conversation</p>
+        </div>
+
+        <!-- Telemetry & Live Tool Calls -->
+        <div class="live-telemetry-box" id="playgroundTelemetryBox">
+          <div class="telemetry-chip">
+            <span class="k">LLM:</span> <span class="v font-mono">Anthropic Claude 3.5 Sonnet</span>
+          </div>
+          <div class="telemetry-chip">
+            <span class="k">Voice:</span> <span class="v font-mono">ElevenLabs eleven_v3</span>
+          </div>
+          <div class="telemetry-chip">
+            <span class="k">Latency:</span> <span class="v font-mono" id="liveLatencyVal">712ms</span>
+          </div>
+        </div>
+
+        <!-- Live Streaming Dialogue -->
+        <div class="playground-chat-stream" id="playgroundChatStream">
+          <div class="stream-placeholder">The live conversation turns, dynamic prompt injection, and n8n tool calls will stream here during the call...</div>
+        </div>
+
+        <!-- Playground Controls -->
+        <div class="playground-controls mt-4">
+          <button class="btn btn-success btn-lg" id="btnStartPlaygroundCall">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <span>Start Test Call</span>
+          </button>
+          <button class="btn btn-danger btn-lg" id="btnEndPlaygroundCall" style="display:none;">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M16 8l-8 8"/><path d="M8 8l8 8"/></svg>
+            <span>End Call</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ================= MODAL: CREATE KNOWLEDGE BASE ================= -->
+  <div class="modal-backdrop" id="createKbModal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 class="modal-title">Create Knowledge Base</h3>
+        <button class="modal-close-btn" id="btnCloseKbModal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p class="modal-subtitle">Create a new knowledge base and upload trade documents for Voice AI vector search.</p>
+        <form id="createKbForm">
+          <div class="form-group">
+            <label for="kbNameInput">Name <span class="text-danger">*</span></label>
+            <input type="text" id="kbNameInput" class="form-control" placeholder="Enter knowledge base name" maxlength="40" required>
+            <small class="text-muted">Maximum 40 characters.</small>
+          </div>
+          <div class="form-group">
+            <label>Files <span class="text-danger">*</span></label>
+            <div class="file-drop-zone" id="fileDropZone">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="36" height="36"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+              <p>Drag and drop or <span class="browse-link">browse</span> files</p>
+              <input type="file" id="kbFileInput" class="hidden-file-input" multiple accept=".pdf,.docx,.txt,.csv">
+              <span class="file-hint">Upload up to 25 files, max 500 MB per file (.pdf, .docx, .txt)</span>
+            </div>
+            <div class="selected-files-list mt-2" id="selectedFilesList"></div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" id="btnCancelKb">Cancel</button>
+            <button type="submit" class="btn btn-primary" id="btnSubmitKb">Create</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ================= MODAL: INVITE USER ================= -->
+  <div class="modal-backdrop" id="inviteUserModal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 class="modal-title">Invite Team Member</h3>
+        <button class="modal-close-btn" id="btnCloseInviteModal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="inviteUserForm">
+          <div class="form-group">
+            <label for="inviteEmail">Email Address <span class="text-danger">*</span></label>
+            <input type="email" id="inviteEmail" class="form-control" placeholder="colleague@tradecompany.co.uk" required>
+          </div>
+          <div class="form-group">
+            <label for="inviteName">Full Name <span class="text-danger">*</span></label>
+            <input type="text" id="inviteName" class="form-control" placeholder="e.g. David Smith" required>
+          </div>
+          <div class="form-group">
+            <label for="inviteAgent">Associated Voice Agent</label>
+            <select id="inviteAgent" class="form-control">
+              <option value="Essex Heating Inbound">Essex Heating Inbound</option>
+              <option value="Boiler Sure Inbound">Boiler Sure Inbound</option>
+              <option value="Valley Gas Setter">Valley Gas Setter</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="inviteRole">Role</label>
+            <select id="inviteRole" class="form-control">
+              <option value="Manager">Manager</option>
+              <option value="Admin">Admin</option>
+              <option value="Viewer">Viewer / Read Only</option>
+            </select>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" id="btnCancelInvite">Cancel</button>
+            <button type="submit" class="btn btn-primary">Send Invitation</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ================= MODAL: ADD CREDITS ================= -->
+  <div class="modal-backdrop" id="addCreditsModal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 class="modal-title">Purchase Voice Credits</h3>
+        <button class="modal-close-btn" id="btnCloseCreditsModal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p class="modal-subtitle">Instant voice minute refill via your connected payment method.</p>
+        <div class="credit-packages-grid">
+          <button type="button" class="credit-pkg-card" data-amount="50">
+            <span class="pkg-amount">£50.00</span>
+            <span class="pkg-mins">~100 Minutes</span>
+          </button>
+          <button type="button" class="credit-pkg-card selected" data-amount="100">
+            <span class="pkg-badge">Popular</span>
+            <span class="pkg-amount">£100.00</span>
+            <span class="pkg-mins">~200 Minutes</span>
+          </button>
+          <button type="button" class="credit-pkg-card" data-amount="250">
+            <span class="pkg-amount">£250.00</span>
+            <span class="pkg-mins">~500 Minutes</span>
+          </button>
+        </div>
+        <div class="modal-footer mt-4">
+          <button type="button" class="btn btn-secondary" id="btnCancelCredits">Cancel</button>
+          <button type="button" class="btn btn-primary" id="btnConfirmBuyCredits">Confirm Purchase</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= MODAL: DOCUMENT EXPLORER ================= -->
+  <div class="modal-backdrop" id="docExplorerModal">
+    <div class="modal-box max-w-xl">
+      <div class="modal-header">
+        <div class="header-with-badge">
+          <h3 class="modal-title" id="docExplorerTitle">Knowledge Base Documents</h3>
+          <span class="badge-pill badge-success">Indexed</span>
+        </div>
+        <button class="modal-close-btn" id="btnCloseDocExplorerModal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p class="modal-subtitle" id="docExplorerSubtitle">Files vector-indexed for semantic LLM lookup in Voice AI.</p>
+        <div class="doc-files-list" id="docFilesList">
+          <!-- Populated by JS -->
+        </div>
+        <div class="modal-footer mt-4">
+          <button type="button" class="btn btn-secondary" id="btnCloseDocExplorer">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= MODAL: CONFIGURE AUTO-REFILL ================= -->
+  <div class="modal-backdrop" id="autoRefillModal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 class="modal-title">Configure Auto-Refill</h3>
+        <button class="modal-close-btn" id="btnCloseAutoRefillModal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p class="modal-subtitle">Automatically purchase credits to ensure your voice agent never misses a customer call.</p>
+        <form id="autoRefillForm">
+          <div class="form-group">
+            <label for="refillThreshold">Minimum Balance Trigger</label>
+            <select id="refillThreshold" class="form-control">
+              <option value="15">When balance falls below £15.00 (~30 mins)</option>
+              <option value="25" selected>When balance falls below £25.00 (~50 mins)</option>
+              <option value="50">When balance falls below £50.00 (~100 mins)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="refillAmount">Refill Package</label>
+            <select id="refillAmount" class="form-control">
+              <option value="50">Add £50.00 (~100 voice minutes)</option>
+              <option value="100" selected>Add £100.00 (~200 voice minutes)</option>
+              <option value="250">Add £250.00 (~500 voice minutes)</option>
+            </select>
+          </div>
+          <div class="modal-footer mt-4">
+            <button type="button" class="btn btn-secondary" id="btnCancelAutoRefill">Cancel</button>
+            <button type="submit" class="btn btn-primary">Save Settings</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= MODAL: EDIT CONTACT NOTE ================= -->
+  <div class="modal-backdrop" id="contactNoteModal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 class="modal-title" id="contactNoteModalTitle">Customer Note</h3>
+        <button class="modal-close-btn" id="btnCloseContactNoteModal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="contactNoteForm">
+          <input type="hidden" id="contactNoteId">
+          <div class="form-group">
+            <label>Customer Details</label>
+            <div class="font-mono text-sm" id="contactNoteDetails" style="color:var(--primary);"></div>
+          </div>
+          <div class="form-group">
+            <label for="contactNoteText">CRM Dispatch & Engineer Notes</label>
+            <textarea id="contactNoteText" class="form-control" rows="4" placeholder="Enter notes visible to voice agent and CRM dispatchers..."></textarea>
+          </div>
+          <div class="modal-footer mt-4">
+            <button type="button" class="btn btn-secondary" id="btnCancelContactNote">Cancel</button>
+            <button type="submit" class="btn btn-primary">Save Note</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Notification Toast -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
