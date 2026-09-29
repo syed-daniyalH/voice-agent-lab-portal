@@ -1,5 +1,5 @@
 -- Voice Agent Portal - PostgreSQL Production Schema & Seed Data
--- Architecture: Voice AI -> n8n Orchestrator -> FastAPI -> PostgreSQL 16
+-- Architecture: Voice AI -> Automation Layer -> FastAPI -> PostgreSQL 16
 
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 

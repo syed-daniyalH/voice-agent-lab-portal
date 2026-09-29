@@ -31,7 +31,7 @@ services:
     environment:
       - DATABASE_URL=postgresql://postgres:postgrespassword@postgres:5432/voice_agent_db
       - VOICE_API_KEY=${VOICE_API_KEY:-}
-      - GHL_LOCATION_ID=loc_ghl_keystone_essex_881
+      - PORTAL_LOCATION_ID=loc_keystone_essex_881
     ports:
       - "8000:8000"
     depends_on:
