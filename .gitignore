@@ -39,3 +39,9 @@ Thumbs.db
 SKILL (1).md
 Voice_Agent_Portal_Client_Handover_Guide.pdf
 Implementation.md
+
+# Local documentation only - do not publish to GitHub
+*.md
+*.pdf
+*.doc
+*.docx
