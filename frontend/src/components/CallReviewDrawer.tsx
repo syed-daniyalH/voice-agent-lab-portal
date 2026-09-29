@@ -13,7 +13,7 @@ interface CallReviewDrawerProps {
 const waveformBars = [24, 36, 18, 52, 42, 64, 30, 50, 70, 44, 28, 58, 38, 62, 48, 76, 34, 54, 66, 40, 30, 60, 46, 68, 52, 36, 58, 44, 72, 38, 56, 64, 32, 48, 70, 42, 28, 60, 46, 74, 50, 34, 62, 40, 56, 68, 30, 52];
 
 function valueOrMissing(value: unknown) {
-  if (value === undefined || value === null || value === "" || value === false) return "Not captured";
+  if (value === undefined || value === null || value === "") return "Not captured";
   return String(value);
 }
 
@@ -49,16 +49,27 @@ export default function CallReviewDrawer({ call, onClose, onUpdated }: CallRevie
   const customRows = useMemo(() => {
     const custom = call?.custom_analysis || {};
     return [
-      ["Caller", custom.caller_name || call?.contact_name],
+      ["Caller", custom.caller_name || custom.customer_name || call?.contact_name],
       ["Email", custom.email],
-      ["Postcode", custom.postcode],
-      ["Address", custom.property_address],
+      ["Postcode", custom.postcode || custom.property_post_code],
+      ["Address", custom.property_address || custom.customer_address],
       ["Service", custom.service_job_type || custom.service_type],
       ["Boiler", custom.boiler_type],
-      ["Issue", custom.issue_reported],
-      ["Emergency", custom.emergency_status || custom.emergency],
+      ["Issue", custom.issue_reported || custom.fault_details || custom.issue_description],
+      ["Emergency", custom.emergency_status || custom.emergency || custom.emergency_plumbing || custom.is_emergency],
       ["Fuel", custom.fuel_type],
-      ["Timeframe", custom.timeframe],
+      ["Timeframe", custom.timeframe || custom.timeline],
+      ["Survey slot", custom.survey_slot],
+      ["Callback", custom.callback_datetime],
+      ["Callback requested", custom.callback_requested],
+      ["Transfer attempted", custom.transfer_attempted],
+      ["Transfer successful", custom.transfer_successful],
+      ["Existing customer", custom.existing_customer],
+      ["Office status", custom.office_status_at_call],
+      ["Enquiry category", custom.enquiry_category],
+      ["Plumbing type", custom.plumbing_work_type],
+      ["Team message", custom.message_for_team],
+      ["Asked for human", custom.asked_for_human],
       ["Caller type", custom.caller_type],
       ["Quote form", custom.quote_form_status || custom.quick_form_requested],
     ];
