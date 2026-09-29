@@ -195,10 +195,11 @@ export default function CallsLogPage() {
       try {
         const data = await api.getCalls({ limit: 100 });
         const merged = [...importedReferenceCalls, ...(data.length > 0 ? data : demoCalls)];
-        setCalls(Array.from(new Map(merged.map((call) => [call.id, call])).values()));
+        const uniqueCalls = Array.from(new Map(merged.map((call) => [call.id, call])).values());
+        setCalls(uniqueCalls.sort((a, b) => (b.recording_url ? 1 : 0) - (a.recording_url ? 1 : 0)));
       } catch (err) {
         console.warn("Using demo calls data:", err);
-        setCalls(demoCalls);
+        setCalls(demoCalls.sort((a, b) => (b.recording_url ? 1 : 0) - (a.recording_url ? 1 : 0)));
       } finally {
         setIsLoading(false);
       }
@@ -441,6 +442,7 @@ export default function CallsLogPage() {
                 <th>Date & Time</th>
                 <th>Duration</th>
                 <th>Direction</th>
+                <th>Recording</th>
                 <th>Outcome</th>
                 <th>Sentiment</th>
                 <th>Cost</th>
@@ -450,13 +452,13 @@ export default function CallsLogPage() {
             <tbody>
               {isLoading ? (
                 <tr>
-                  <td colSpan={11} style={{ textAlign: "center", padding: "26px", color: "var(--text-muted)" }}>
+                  <td colSpan={12} style={{ textAlign: "center", padding: "26px", color: "var(--text-muted)" }}>
                     Loading call records...
                   </td>
                 </tr>
               ) : filteredCalls.length === 0 ? (
                 <tr>
-                  <td colSpan={11} style={{ textAlign: "center", padding: "26px", color: "var(--text-muted)" }}>
+                  <td colSpan={12} style={{ textAlign: "center", padding: "26px", color: "var(--text-muted)" }}>
                     No calls match the current filters.
                   </td>
                 </tr>
@@ -486,6 +488,21 @@ export default function CallsLogPage() {
                     <td style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "12.5px" }}>{call.duration_str}</td>
                     <td>
                       <span className={`badge ${call.direction === "Inbound" ? "badge-sky" : "badge-purple"}`}>{call.direction}</span>
+                    </td>
+                    <td onClick={(e) => e.stopPropagation()}>
+                      {call.recording_url ? (
+                        <a
+                          href={call.recording_url}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="badge badge-emerald"
+                          style={{ textDecoration: "none", whiteSpace: "nowrap" }}
+                        >
+                          Play MP3
+                        </a>
+                      ) : (
+                        <span style={{ color: "var(--text-muted)", fontSize: "12px" }}>No audio</span>
+                      )}
                     </td>
                     <td>
                       <span className={`badge ${call.outcome.includes("Book") || call.outcome.includes("Dispatch") ? "badge-emerald" : call.outcome.includes("Emergency") ? "badge-rose" : "badge-sky"}`}>
