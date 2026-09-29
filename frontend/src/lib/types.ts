@@ -27,6 +27,9 @@ export interface Call {
   }[];
   review_status: string;
   feedback_comment?: string;
+  recording_url?: string;
+  public_log_url?: string;
+  source_portal_url?: string;
 }
 
 export interface Contact {
@@ -182,4 +185,3 @@ export interface OverviewMetrics {
     direction?: string;
   };
 }
-

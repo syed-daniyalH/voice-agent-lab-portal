@@ -33,6 +33,9 @@ class Call(Base):
     custom_analysis = Column(JSON, default=dict)
     summary = Column(Text, default="")
     transcript = Column(JSON, default=list) # List of {speaker, text, time}
+    recording_url = Column(String(255), default="")
+    public_log_url = Column(String(255), default="")
+    source_portal_url = Column(String(255), default="")
     
     # QA & Feedback
     review_status = Column(String(32), default="Not Reviewed") # Reviewed - Good / Needs Improvement / Escalated
@@ -54,7 +57,7 @@ class Contact(Base):
     last_call_date = Column(String(64), default="")
     notes = Column(Text, default="")
     is_favourite = Column(Boolean, default=False)
-    ghl_contact_id = Column(String(64), nullable=True)
+    crm_contact_id = Column(String(64), nullable=True)
     created_at = Column(DateTime(timezone=True), server_default=func.now())
 
 

@@ -212,7 +212,7 @@ export default function ContactsPage() {
             <div style={{ display: "flex", justifyContent: "flex-end", gap: "10px" }}>
               <button onClick={() => setSelectedContact(null)} className="btn-secondary">Cancel</button>
               <button onClick={handleSaveNotes} disabled={isSaving} className="btn-primary">
-                {isSaving ? "Saving..." : "Save to GHL CRM"}
+                {isSaving ? "Saving..." : "Save to CRM"}
               </button>
             </div>
           </div>

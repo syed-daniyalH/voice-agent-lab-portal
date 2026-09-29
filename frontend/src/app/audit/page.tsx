@@ -11,7 +11,7 @@ const demoAuditLogs: AuditLog[] = [
   { id: 2, datetime_str: "24 Sep 2026, 09:58", user: "Daniyal Haider", action: "User approved", entity: "User", entity_name: "sam.taylor@example.co.uk", details: "Portal access approved for BuildRight Construction" },
   { id: 3, datetime_str: "23 Sep 2026, 16:22", user: "Aisha Khan", action: "Agent updated", entity: "Voice agent", entity_name: "ASAP Boilers 24/7", details: "Knowledge base connection refreshed" },
   { id: 4, datetime_str: "23 Sep 2026, 15:40", user: "Daniyal Haider", action: "Credits added", entity: "Billing", entity_name: "Credit wallet", details: "GBP 50.00 added through connected billing" },
-  { id: 5, datetime_str: "22 Sep 2026, 11:08", user: "Priya Shah", action: "Contact synced", entity: "Contact", entity_name: "Sophie Turner", details: "Contact and notes synced to GHL CRM" },
+  { id: 5, datetime_str: "22 Sep 2026, 11:08", user: "Priya Shah", action: "Contact synced", entity: "Contact", entity_name: "Sophie Turner", details: "Contact and notes synced to the CRM" },
 ];
 
 export default function AuditPage() {

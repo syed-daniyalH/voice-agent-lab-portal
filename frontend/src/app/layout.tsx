@@ -3,8 +3,8 @@ import "./globals.css";
 import Sidebar from "../components/Sidebar";
 
 export const metadata: Metadata = {
-  title: "Keystone Voice Agent Portal | Voice AI & FastAPI",
-  description: "Enterprise client handover portal for inbound trade voice agent operations.",
+  title: "We Build Trades Voice Agent Portal",
+  description: "Premium client-facing voice agent operations portal for calls, agents, contacts, billing, users and QA.",
 };
 
 export default function RootLayout({
@@ -15,9 +15,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <div style={{ display: "flex", minHeight: "100vh" }}>
+        <div className="app-shell">
           <Sidebar />
-          <div style={{ flex: 1, marginLeft: "var(--sidebar-width)", minWidth: 0 }}>
+          <div className="app-main">
             {children}
           </div>
         </div>

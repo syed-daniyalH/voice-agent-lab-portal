@@ -15,8 +15,8 @@ const navGroups: { label: string; items: NavItem[] }[] = [
   {
     label: "Command",
     items: [
-      { name: "Overview", href: "/", icon: "OV" },
-      { name: "Voice Agents", href: "/voice-agents", icon: "VA", badge: "4" },
+      { name: "Overview", href: "/dashboard", icon: "OV" },
+      { name: "Voice Agents", href: "/agents", icon: "VA", badge: "6" },
       { name: "Calls", href: "/calls", icon: "CL" },
       { name: "Feedback", href: "/feedback", icon: "QA" },
     ],
@@ -24,17 +24,17 @@ const navGroups: { label: string; items: NavItem[] }[] = [
   {
     label: "Workspace",
     items: [
-      { name: "Users", href: "/users", icon: "US" },
+      { name: "Users", href: "/admin/users", icon: "US" },
       { name: "Contacts", href: "/contacts", icon: "CO" },
-      { name: "Favourites", href: "/favourites", icon: "FV" },
-      { name: "Knowledge Base", href: "/knowledge", icon: "KB" },
+      { name: "Favourites", href: "/saved", icon: "FV" },
+      { name: "Knowledge Base", href: "/admin/knowledge-base", icon: "KB" },
     ],
   },
   {
     label: "Account",
     items: [
       { name: "Billing", href: "/billing", icon: "BI" },
-      { name: "Audit Logs", href: "/audit", icon: "AU" },
+      { name: "Audit Logs", href: "/audit-logs", icon: "AU" },
       { name: "Settings", href: "/settings", icon: "SE" },
     ],
   },
@@ -45,6 +45,7 @@ export default function Sidebar() {
 
   return (
     <aside
+      className="sidebar-shell"
       style={{
         width: "var(--sidebar-width)",
         background: "linear-gradient(180deg, #080f1d 0%, #080b12 100%)",
@@ -106,7 +107,7 @@ export default function Sidebar() {
             Voice API Ready
           </div>
           <div style={{ marginTop: "4px", fontSize: "11px", color: "var(--text-muted)" }}>
-            GHL sync - n8n webhooks online
+            System connections online
           </div>
         </div>
       </div>
@@ -128,7 +129,18 @@ export default function Sidebar() {
             </div>
             <div style={{ display: "flex", flexDirection: "column", gap: "3px" }}>
               {group.items.map((item) => {
-                const isActive = pathname === item.href || (item.href !== "/" && pathname.startsWith(item.href));
+                const aliases: Record<string, string[]> = {
+                  "/dashboard": ["/"],
+                  "/agents": ["/voice-agents"],
+                  "/admin/users": ["/users", "/staff"],
+                  "/saved": ["/favourites"],
+                  "/admin/knowledge-base": ["/knowledge"],
+                  "/audit-logs": ["/audit"],
+                };
+                const isActive =
+                  pathname === item.href ||
+                  (item.href !== "/" && pathname.startsWith(item.href)) ||
+                  (aliases[item.href] || []).some((alias) => pathname === alias || pathname.startsWith(`${alias}/`));
                 return (
                   <Link
                     key={item.href}

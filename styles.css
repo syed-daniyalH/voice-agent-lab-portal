@@ -493,7 +493,7 @@ body.portal-body {
   border-radius: var(--radius-full);
 }
 
-.ghl-sync-pill {
+.crm-sync-pill {
   display: flex;
   align-items: center;
   gap: 6px;
@@ -506,7 +506,7 @@ body.portal-body {
   font-weight: 600;
 }
 
-.ghl-dot {
+.crm-dot {
   width: 6px;
   height: 6px;
   background-color: #10b981;
@@ -2428,4 +2428,3 @@ input:checked + .slider:before {
   font-size: 11px;
   color: var(--text-muted);
 }
-

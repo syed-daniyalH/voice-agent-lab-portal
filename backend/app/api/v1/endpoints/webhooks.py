@@ -79,7 +79,7 @@ async def voice_precall_lookup(request: Request, db: Session = Depends(get_db)):
     payload = await request.json()
     from_number = payload.get("from_number", "")
     
-    # Check GHL / Local Contact DB
+    # Check CRM / Local Contact DB
     contact = db.query(Contact).filter(Contact.phone == from_number).first()
     
     # Determine UK Office Hours (8am - 5pm London time)

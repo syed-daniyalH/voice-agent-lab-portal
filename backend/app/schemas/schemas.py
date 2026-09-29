@@ -28,6 +28,9 @@ class CallResponse(BaseModel):
     custom_analysis: Dict[str, Any] = {}
     summary: str
     transcript: List[Dict[str, Any]] = []
+    recording_url: Optional[str] = ""
+    public_log_url: Optional[str] = ""
+    source_portal_url: Optional[str] = ""
     review_status: str
     feedback_comment: Optional[str] = ""
 
@@ -171,4 +174,3 @@ class OverviewMetricsResponse(BaseModel):
     duration_distribution: Optional[List[Dict[str, Any]]] = None
     heatmap_matrix: Optional[List[Dict[str, Any]]] = None
     filter_meta: Optional[Dict[str, Any]] = None
-

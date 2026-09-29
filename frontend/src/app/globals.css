@@ -32,6 +32,17 @@
   padding: 0;
 }
 
+.app-shell {
+  display: flex;
+  min-height: 100vh;
+}
+
+.app-main {
+  flex: 1;
+  margin-left: var(--sidebar-width);
+  min-width: 0;
+}
+
 body {
   background:
     radial-gradient(circle at top left, rgba(56, 189, 248, 0.08), transparent 28rem),
@@ -275,4 +286,43 @@ input:focus, select:focus, textarea:focus {
   border-radius: 8px;
   font-size: 13px;
   padding: 10px 12px;
+}
+
+@media (max-width: 1180px) {
+  .users-filter-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (max-width: 900px) {
+  :root {
+    --sidebar-width: 72px;
+  }
+
+  .sidebar-shell {
+    width: var(--sidebar-width) !important;
+  }
+
+  .sidebar-shell nav span:not(:first-child),
+  .sidebar-shell nav + div,
+  .sidebar-shell [style*="Super Admin Voice Portal"],
+  .sidebar-shell [style*="Voice API Ready"],
+  .sidebar-shell [style*="System connections"],
+  .sidebar-shell [style*="We Build Trades"] + div {
+    display: none !important;
+  }
+
+  .app-main {
+    margin-left: var(--sidebar-width);
+  }
+}
+
+@media (max-width: 760px) {
+  .app-main main {
+    padding: 16px !important;
+  }
+
+  .data-table {
+    min-width: 760px;
+  }
 }

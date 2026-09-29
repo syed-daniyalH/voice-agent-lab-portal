@@ -63,7 +63,7 @@ const agents: VoiceAgent[] = [
     avgLatency: "762ms",
     creditBurn: "GBP 111.28",
     knowledgeBases: ["Extension qualification script", "Planning permission FAQ", "Surveyor diary rules"],
-    tools: ["qualify_project", "send_quote_form", "check_survey_slots", "create_ghl_opportunity"],
+    tools: ["qualify_project", "send_quote_form", "check_survey_slots", "create_crm_opportunity"],
     recentCalls: [
       { contact: "Sophie Turner", outcome: "Quote Requested", summary: "Kitchen extension lead qualified and project form dispatched.", sentiment: "Neutral" },
       { contact: "Haroon Malik", outcome: "Callback Scheduled", summary: "Loft conversion survey callback booked with estimator.", sentiment: "Positive" },

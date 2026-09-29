@@ -14,8 +14,8 @@ class Settings(BaseSettings):
     
     # Third-party Integrations
     VOICE_API_KEY: str = os.getenv("VOICE_API_KEY", "")
-    GHL_API_KEY: str = os.getenv("GHL_API_KEY", "")
-    GHL_LOCATION_ID: str = os.getenv("GHL_LOCATION_ID", "loc_essex_heating_981")
+    CRM_API_KEY: str = os.getenv("CRM_API_KEY", "")
+    CRM_WORKSPACE_ID: str = os.getenv("CRM_WORKSPACE_ID", "crm_essex_heating_981")
     
     # CORS Origins
     CORS_ORIGINS: List[str] = [

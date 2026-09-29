@@ -135,7 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
           callOutcome: 'Booked Service Slot',
           quoteFormStatus: 'Confirmed & Sent'
         },
-        summary: 'David called to arrange an annual service for his Worcester Bosch combi boiler. The agent confirmed address in Chelmsford, checked n8n live calendar availability, and booked an engineer appointment for Friday at 10:00 AM.',
+        summary: 'David called to arrange an annual service for his Worcester Bosch combi boiler. The agent confirmed address in Chelmsford, checked live calendar availability, and booked an engineer appointment for Friday at 10:00 AM.',
         transcript: [
           { speaker: 'Agent', text: 'Good morning, Boiler Sure reception. Olivia speaking, how can I help you?', time: 0 },
           { speaker: 'User', text: 'Hi Olivia, I would like to book my annual boiler service for this week.', time: 5 },
@@ -716,7 +716,7 @@ document.addEventListener('DOMContentLoaded', () => {
         refreshBtn.classList.add('spin-anim');
         setTimeout(() => {
           refreshBtn.classList.remove('spin-anim');
-          showToast('Live Voice AI calls, latency, and GoHighLevel CRM status refreshed.');
+          showToast('Live Voice AI calls, latency, and CRM status refreshed.');
         }, 500);
       });
     }
@@ -1466,7 +1466,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const speedBtn = document.getElementById('audioSpeedBtn');
     const btnSaveQa = document.getElementById('btnSaveCallQa');
     const btnToggleStar = document.getElementById('btnToggleStarCall');
-    const btnSyncGhl = document.getElementById('btnSyncGhlCall');
+    const btnSyncCrm = document.getElementById('btnSyncCrmCall');
 
     if (closeBtn) closeBtn.addEventListener('click', closeCallDrawer);
     if (overlay) overlay.addEventListener('click', closeCallDrawer);
@@ -1514,12 +1514,12 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-    if (btnSyncGhl) {
-      btnSyncGhl.addEventListener('click', () => {
-        btnSyncGhl.innerHTML = `<span>Syncing...</span>`;
+    if (btnSyncCrm) {
+      btnSyncCrm.addEventListener('click', () => {
+        btnSyncCrm.innerHTML = `<span>Syncing...</span>`;
         setTimeout(() => {
-          btnSyncGhl.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> <span>Synced to GHL</span>`;
-          showToast('Call analysis and CRM fields synced to GoHighLevel location.');
+          btnSyncCrm.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> <span>Synced to CRM</span>`;
+          showToast('Call analysis and CRM fields synced to the connected workspace.');
         }, 400);
       });
     }
@@ -1768,7 +1768,7 @@ document.addEventListener('DOMContentLoaded', () => {
       },
       {
         type: 'tool',
-        text: "⚡ n8n GHL Calendar Tool: check_availability(service='Boiler Diagnostics', postcode='CM1 2AB') &rarr; Found 3 engineer slots.",
+        text: "⚡ Calendar Tool: check_availability(service='Boiler Diagnostics', postcode='CM1 2AB') &rarr; Found 3 engineer slots.",
         delay: 1400
       },
       {
@@ -1783,7 +1783,7 @@ document.addEventListener('DOMContentLoaded', () => {
       },
       {
         type: 'tool',
-        text: "⚡ n8n GHL Appointment Tool: book(calendar='Boiler Repairs', contact_id='ghl_cnt_david') &rarr; Confirmed Slot #9812.",
+        text: "⚡ Appointment Tool: book(calendar='Boiler Repairs', contact_id='crm_cnt_david') &rarr; Confirmed Slot #9812.",
         delay: 1200
       },
       {
@@ -1807,7 +1807,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function runPlaygroundStep() {
       if (!state.playgroundActive || state.playgroundTurnIndex >= playgroundScript.length) {
         if (state.playgroundActive) {
-          statusText.textContent = "Call concluded &bull; Post-call analysis dispatched to GHL CRM";
+          statusText.textContent = "Call concluded &bull; Post-call analysis dispatched to CRM";
           orbCore.classList.remove('speaking');
         }
         return;
@@ -1903,7 +1903,7 @@ document.addEventListener('DOMContentLoaded', () => {
             callOutcome: 'Booked Engineer Slot',
             quoteFormStatus: 'Confirmed & Dispatched'
           },
-          summary: 'Live playground test: Customer David Miller called regarding a banging boiler issue. Voice agent Olivia qualified the issue and booked an engineer appointment for Friday 10:00 AM via live n8n tool execution.',
+          summary: 'Live playground test: Customer David Miller called regarding a banging boiler issue. Voice agent Olivia qualified the issue and booked an engineer appointment for Friday 10:00 AM via live automation tool execution.',
           transcript: [
             { speaker: 'Agent', text: 'Good morning! Thanks for calling Essex Heating Experts. My name is Olivia, how can I help you today?', time: 0 },
             { speaker: 'User', text: 'Hi Olivia, my combi boiler is making loud banging noises and losing pressure constantly.', time: 6 },
@@ -1934,7 +1934,7 @@ document.addEventListener('DOMContentLoaded', () => {
       btnStart.style.display = 'inline-flex';
       btnEnd.style.display = 'none';
       orbCore.classList.remove('speaking');
-      chatStream.innerHTML = `<div class="stream-placeholder">The live conversation turns, dynamic prompt injection, and n8n tool calls will stream here during the call...</div>`;
+      chatStream.innerHTML = `<div class="stream-placeholder">The live conversation turns, dynamic prompt injection, and automation tool calls will stream here during the call...</div>`;
       statusText.textContent = "Agent ready &bull; Click 'Start Test Call' to simulate live conversation";
     }
 

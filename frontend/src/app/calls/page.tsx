@@ -6,8 +6,10 @@ import CallReviewDrawer from "../../components/CallReviewDrawer";
 import VoicePlaygroundModal from "../../components/VoicePlaygroundModal";
 import { api } from "../../lib/api";
 import { Call } from "../../lib/types";
+import { importedReferenceCalls } from "../../lib/importedCalls";
 
 const demoCalls: Call[] = [
+  ...importedReferenceCalls,
   {
     id: "call_asap_1041",
     datetime_str: "Sep 24, 2026, 08:42 AM",
@@ -192,7 +194,8 @@ export default function CallsLogPage() {
       setIsLoading(true);
       try {
         const data = await api.getCalls({ limit: 100 });
-        setCalls(data.length > 0 ? data : demoCalls);
+        const merged = [...importedReferenceCalls, ...(data.length > 0 ? data : demoCalls)];
+        setCalls(Array.from(new Map(merged.map((call) => [call.id, call])).values()));
       } catch (err) {
         console.warn("Using demo calls data:", err);
         setCalls(demoCalls);
@@ -263,7 +266,7 @@ export default function CallsLogPage() {
 
   const exportCSV = () => {
     const exportData = filteredCalls.filter((call) => selectedIds.length === 0 || selectedIds.includes(call.id));
-    const headers = ["ID", "Contact", "Phone", "Agent", "Direction", "Status", "Date", "Duration", "Outcome", "Sentiment", "Cost", "Review"];
+    const headers = ["ID", "Contact", "Phone", "Agent", "Direction", "Status", "Date", "Duration", "Outcome", "Sentiment", "Cost", "Review", "Recording", "Public Log"];
     const rows = exportData.map((call) => [
       call.id,
       `"${call.contact_name}"`,
@@ -277,6 +280,8 @@ export default function CallsLogPage() {
       call.user_sentiment || "Neutral",
       call.cost,
       `"${call.review_status}"`,
+      `"${call.recording_url || ""}"`,
+      `"${call.public_log_url || ""}"`,
     ]);
     const csvContent = [headers.join(","), ...rows.map((row) => row.join(","))].join("\n");
     const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });

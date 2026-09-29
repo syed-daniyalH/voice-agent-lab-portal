@@ -125,6 +125,11 @@ export default function CallReviewDrawer({ call, onClose, onUpdated }: CallRevie
                 <span key={idx} style={{ flex: 1, height: `${height}%`, borderRadius: "3px", background: (idx / waveformBars.length) * 100 <= playbackProgress ? "#38bdf8" : "rgba(148,163,184,0.22)" }} />
               ))}
             </div>
+            {call.recording_url && (
+              <audio controls src={call.recording_url} style={{ width: "100%", marginTop: "10px" }}>
+                <track kind="captions" />
+              </audio>
+            )}
             <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "10px", marginTop: "9px" }}>
               <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
                 <button onClick={() => setIsPlaying((value) => !value)} className="btn-primary" style={{ padding: "7px 13px", fontSize: "12px" }}>{isPlaying ? "Pause" : "Play"}</button>
@@ -137,6 +142,13 @@ export default function CallReviewDrawer({ call, onClose, onUpdated }: CallRevie
               </div>
               <span style={{ color: "var(--text-muted)", fontFamily: "'JetBrains Mono', monospace", fontSize: "11px" }}>{Math.round((playbackProgress / 100) * call.duration_seconds)}s / {call.duration_seconds}s</span>
             </div>
+            {(call.recording_url || call.public_log_url || call.source_portal_url) && (
+              <div style={{ display: "flex", flexWrap: "wrap", gap: "8px", marginTop: "10px" }}>
+                {call.recording_url && <a href={call.recording_url} target="_blank" rel="noreferrer" className="btn-secondary" style={{ padding: "6px 10px", fontSize: "11.5px" }}>Download Recording</a>}
+                {call.public_log_url && <a href={call.public_log_url} target="_blank" rel="noreferrer" className="btn-secondary" style={{ padding: "6px 10px", fontSize: "11.5px" }}>Open Call Log</a>}
+                {call.source_portal_url && <a href={call.source_portal_url} target="_blank" rel="noreferrer" className="btn-secondary" style={{ padding: "6px 10px", fontSize: "11.5px" }}>Source Portal</a>}
+              </div>
+            )}
           </section>
 
           <section style={{ display: "grid", gridTemplateColumns: "repeat(4, minmax(0, 1fr))", gap: "8px" }}>
@@ -189,7 +201,7 @@ export default function CallReviewDrawer({ call, onClose, onUpdated }: CallRevie
                   <button key={`${speaker}-${idx}`} onClick={() => setPlaybackProgress(Math.min(100, Math.max(0, idx * 18 + 8)))} style={{ alignSelf: isAgent ? "flex-start" : "flex-end", maxWidth: "88%", textAlign: "left", border: `1px solid ${isAgent ? "rgba(56,189,248,0.22)" : "rgba(16,185,129,0.22)"}`, background: isAgent ? "rgba(14,165,233,0.09)" : "rgba(16,185,129,0.09)", color: "#e2e8f0", borderRadius: "6px", padding: "9px 11px", cursor: "pointer" }}>
                     <div style={{ display: "flex", justifyContent: "space-between", gap: "12px", marginBottom: "3px" }}>
                       <strong style={{ color: isAgent ? "#7dd3fc" : "#86efac", fontSize: "10.5px" }}>{speaker}</strong>
-                      <span style={{ color: "var(--text-muted)", fontFamily: "'JetBrains Mono', monospace", fontSize: "10px" }}>{message.timestamp || `${idx * 4}`}s</span>
+                      <span style={{ color: "var(--text-muted)", fontFamily: "'JetBrains Mono', monospace", fontSize: "10px" }}>{message.timestamp || (message as any).time || `${idx * 4}`}s</span>
                     </div>
                     <div style={{ fontSize: "12.5px", lineHeight: 1.5 }}>{message.text}</div>
                   </button>

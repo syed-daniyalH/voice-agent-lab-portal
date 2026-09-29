@@ -237,8 +237,8 @@ export default function SettingsPage() {
                 <h3 style={{ margin: "0 0 10px", color: "#f8fafc", fontSize: "14px", fontWeight: 900 }}>Connected stack</h3>
                 <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10px", color: "var(--text-secondary)", fontSize: "12.5px" }}>
                   <div>Voice agent ID: <strong style={{ color: "#7dd3fc" }}>agent_901c87f9812bc</strong></div>
-                  <div>GHL location: <strong style={{ color: "#7dd3fc" }}>loc_ghl_keystone_essex_881</strong></div>
-                  <div>n8n pre-call: <strong style={{ color: "#86efac" }}>online</strong></div>
+                  <div>CRM workspace: <strong style={{ color: "#7dd3fc" }}>crm_workspace_keystone_essex_881</strong></div>
+                  <div>Pre-call automation: <strong style={{ color: "#86efac" }}>online</strong></div>
                   <div>Post-call ingest: <strong style={{ color: "#86efac" }}>online</strong></div>
                 </div>
               </div>
